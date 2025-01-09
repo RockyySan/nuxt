@@ -1,0 +1,42 @@
+[
+  {
+    "slug": "concentration",
+    "name": "Concentration",
+    "description": "Concentration",
+    "products": [
+      { "id": 1, "name": "Smartphone" },
+      { "id": 2, "name": "Laptop" },
+      { "id": 3, "name": "Tablet" }
+    ]
+  },
+  {
+    "slug": "fragrance-family",
+    "name": "Fragrance Family",
+    "description": "Fragrance Family",
+    "products": [
+      { "id": 4, "name": "Novel" },
+      { "id": 5, "name": "Biography" },
+      { "id": 6, "name": "Textbook" }
+    ]
+  },
+  {
+    "slug": "new-arrival",
+    "name": "New Arrival",
+    "description": "New Arrival",
+    "products": [
+      { "id": 10, "name": "Washing Machine" },
+      { "id": 11, "name": "Refrigerator" },
+      { "id": 12, "name": "Microwave" }
+    ]
+  },
+  {
+    "slug": "purpose-time",
+    "name": "Purpose Time",
+    "description": "Purpose Time",
+    "products": [
+      { "id": 13, "name": "Action Figures" },
+      { "id": 14, "name": "Board Games" },
+      { "id": 15, "name": "Dolls" }
+    ]
+  }
+]

@@ -1,0 +1,93 @@
+
+[
+  {
+    "id": "1",
+    "name": "Chanel No. 5",
+    "image": "chanel_no5.jpg",
+    "price": 120,
+    "rating": 4.5,
+    "discount": 15,
+    "instock": 50
+  },
+  {
+    "id": "2",
+    "name": "Dior Sauvage",
+    "image": "dior_sauvage.jpg",
+    "price": 110,
+    "rating": 4.7,
+    "discount": 10,
+    "instock": 30
+  },
+  {
+    "id": "3",
+    "name": "Yves Saint Laurent Black Opium",
+    "image": "ysl_black_opium.jpg",
+    "price": 100,
+    "rating": 4.6,
+    "discount": 20,
+    "instock": 40
+  },
+  {
+    "id": "4",
+    "name": "Gucci Bloom",
+    "image": "gucci_bloom.jpg",
+    "price": 90,
+    "rating": 4.4,
+    "discount": 5,
+    "instock": 25
+  },
+  {
+    "id": "5",
+    "name": "Marc Jacobs Daisy",
+    "image": "marc_jacobs_daisy.jpg",
+    "price": 80,
+    "rating": 4.5,
+    "discount": 12,
+    "instock": 35
+  },
+  {
+    "id": "6",
+    "name": "Versace Bright Crystal",
+    "image": "versace_bright_crystal.jpg",
+    "price": 70,
+    "rating": 4.3,
+    "discount": 8,
+    "instock": 45
+  },
+  {
+    "id": "7",
+    "name": "Dolce&Gabbana Light Blue",
+    "image": "dolce_gabbana_light_blue.jpg",
+    "price": 60,
+    "rating": 4.2,
+    "discount": 18,
+    "instock": 55
+  },
+  {
+    "id": "8",
+    "name": "Prada Candy",
+    "image": "prada_candy.jpg",
+    "price": 50,
+    "rating": 4.1,
+    "discount": 10,
+    "instock": 20
+  },
+  {
+    "id": "9",
+    "name": "Burberry Brit",
+    "image": "burberry_brit.jpg",
+    "price": 40,
+    "rating": 4,
+    "discount": 15,
+    "instock": 30
+  },
+  {
+    "id": "10",
+    "name": "Calvin Klein Eternity",
+    "image": "calvin_klein_eternity.jpg",
+    "price": 30,
+    "rating": 4.2,
+    "discount": 5,
+    "instock": 60
+  }
+]

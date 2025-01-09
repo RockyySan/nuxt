@@ -40,6 +40,6 @@ export default class BaseService {
     if (params) {
       req = { body: params }
     }
-    return useHttp(path, { method: 'DELETE', ...payload })
+    return useHttp(path, { method: 'DELETE', ...req })
   }
 }

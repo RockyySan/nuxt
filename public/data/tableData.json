@@ -1,0 +1,33 @@
+[
+    {
+      "image": "/images/perfume2.jpg",
+      "name": "9 pm",
+      "price": "10$",
+      "stock": "In stock",
+      "type": "Women"
+    },
+    {
+      "image": "/images/perfume1.jpg",
+      "name": "Savage Dior",
+      "price": "10$",
+      "stock": "In stock",
+      "type": "Men"
+
+    },
+    {
+      "image": "/images/perfume3.jpg",
+      "name": "Ventana",
+      "price": "10$",
+      "stock": "In stock",
+      "type": "Concentration"
+    },
+    {
+      "image": "/images/perfume2.jpg",
+      "name": "K01 Kaleb Jeb",
+      "price": "10000$",
+      "stock": "Out stock",
+      "type": "Concentration"
+
+    }
+  ]
+  

@@ -1,22 +1,29 @@
 <template>
   <div>
-    <Loading />
-    <PageHeader />
-    <main ref="mainContent">
+    <!-- Header -->
+    <header>
+      <HeaderMenu :isLogin="isLogin"/>
+    </header>
+
+    <!-- Page Content -->
+    <main class="container mx-auto py-8">
       <slot />
     </main>
   </div>
 </template>
-
 <script setup>
-import { useAuthStore } from '~/store/auth'
-import { onMounted } from 'vue'
+import { ref, onMounted } from 'vue'
 
-const { isLoggedIn } = useAuthenticate()
+const isLogin = ref(false)
+const { value: token } = useCookie('access_token')
 
-onMounted(async () => {
-  if (isLoggedIn.value) {
-    await useAuthStore().getMe()
-  }
+const checkUserLoginStatus = async () => {
+  isLogin.value = !!token;
+}
+
+onMounted(() => {
+  checkUserLoginStatus()
 })
 </script>
+
+

@@ -1,0 +1,51 @@
+[
+  {
+    "id": 1,
+    "image": "/images/perfume2.jpg",
+    "title": "Clearance Sale",
+    "discount": "70% OFF!",
+    "rate": "5 star",
+    "price": "$19.99",
+    "inStock": "In Stock"
+  },
+  {
+    "id": 2,
+      "image": "/images/perfume3.jpg",
+      "title": "Exclusive Offer",
+      "discount": "70% OFF!",
+      "price": "$19.99",
+      "inStock": "In Stock"
+
+      
+    },  
+    
+    {
+      "id": 3,
+      "image": "/images/perfume1.jpg",
+      "title": "Flash Sale",
+      "discount": "70% OFF!",
+      "price": "$19.99",
+      "inStock": "In Stock"
+
+    },
+    {
+      "id": 3,
+      "image": "/images/perfume1.jpg",
+      "title": "Flash Sale",
+      "discount": "70% OFF!",
+      "price": "$19.99",
+      "inStock": "Out stock "
+
+    },
+    {
+      "id": 3,
+      "image": "/images/perfume1.jpg",
+      "title": "Flash Sale",
+      "discount": "70% OFF!",
+      "price": "$19.99",
+      "inStock": "In Stock"
+
+    }
+  ]
+  
+  
