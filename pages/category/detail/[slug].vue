@@ -14,7 +14,7 @@
         <h2 class="text-2xl font-semibold text-gray-800">{{ category.name }}</h2>
         <!-- Category Description -->
         <p v-if="category.description" class="text-sm text-gray-500 mt-2">{{ category.description }}</p>
-        <p v-else class="text-sm text-gray-500 mt-2 italic">No description available.</p>
+        <p v-else class="text-sm text-gray-500 mt-2 italic">{{ $t('home.no_description_available') }}.</p>
       </div>
 
       <!-- Search Input -->
@@ -23,7 +23,7 @@
           v-model="searchQuery"
           @input="onSearchQueryChange"
           type="text"
-          placeholder="Search products by title..."
+          :placeholder="$t('home.search_products')"
           class="w-full md:w-1/2 p-2 border rounded-lg shadow-sm"
         />
       </div>
@@ -42,7 +42,7 @@
           @click="loadMore"
           class="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600 transition"
         >
-          Load More
+          {{ $t('home.see_more') }}
         </button>
       </div>
     </div>

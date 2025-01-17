@@ -13,23 +13,32 @@ const filterOption = ref({
   priceRange: [0, 5000],
 })
 
-const sortOrder = ref('ascending')
 const currentPage = ref(1)
 const products = ref([])
 const productStore = useProductStore()
-const { getProduct } = productStore
+const { getLatestProduct } = productStore
 const collapse = ref(true)
 const { debounce } = useDebounce()
 const totalPages = ref()
+const per_page = 15;
+const totalLatest = ref('')
 
-const fetchProduct = async (params) => {
+const fetchLatestProducts = async (params = {}) => {
   try {
-    const productList = await getProduct(params)
-    products.value = productList.data
-    currentPage.value = productList.current_page
-    totalPages.value = productList.last_page
+    // Merge default params with incoming params
+    const mergedParams = {
+      per_page: per_page,
+      page: currentPage.value,
+      latest: true,
+      ...params, // Add incoming params
+    }
+
+    const response = await getLatestProduct(mergedParams)
+    products.value = response.data || [];
+    totalPages.value = response.last_page || 1; // Ensure a default value
+    totalLatest.value = response.total || 0; // Handle undefined or missing total
   } catch (error) {
-    ElMessage.error('Failed to fetch products')
+    ElMessage.error('Failed to fetch latest products')
   }
 }
 
@@ -40,36 +49,25 @@ const debouncedFetch = debounce(async () => {
     min_price: filterOption.value.priceRange[0],
     max_price: filterOption.value.priceRange[1],
   }
-  await fetchProduct(params)
+  await fetchLatestProducts(params)
 }, 300)
 
 const filterProducts = () => {
   debouncedFetch()
 }
 
-const sortProducts = () => {
-  if (sortOrder.value) {
-    products.value.sort((a, b) => {
-      if (sortOrder.value === 'ascending') {
-        return a.price - b.price
-      } else {
-        return b.price - a.price
-      }
-    })
-  }
-}
-
 const prevPage = () => {
   if (currentPage.value > 1) {
-    fetchProduct({ page: currentPage.value - 1 })
+    fetchLatestProducts({ page: currentPage.value - 1 })
   }
 }
 
 const nextPage = () => {
   if (currentPage.value < totalPages.value) {
-    fetchProduct({ page: currentPage.value + 1 })
+    fetchLatestProducts({ page: currentPage.value + 1 })
   }
 }
+
 
 watch(
   () => filterOption.value.title,
@@ -81,17 +79,23 @@ watch(
 // Fetch products when component mounts and use the `title` query if present
 onMounted(() => {
   const params = {
+    per_page: per_page,
+    page: currentPage.value,
+    latest: true,
     title: filterOption.value.title,
     min_price: filterOption.value.priceRange[0],
     max_price: filterOption.value.priceRange[1],
   }
-  fetchProduct(params)
+  fetchLatestProducts(params)
 })
 </script>
 
 <template>
   <div class="products-container px-4 md:px-8 lg:px-12">
-    <h1 class="text-2xl font-bold mb-6 text-center">{{ $t('home.products_list') }}</h1>
+    <button @click="navigateTo('')" class="p-2 bg-primary rounded w-[100px]">
+      <i class="fa-solid fa-arrow-left pr-[10px]"></i>Back</button>
+    <h1 class="text-2xl font-bold mb-6 text-center">Latest Product</h1>
+    <div class="text-xl">Total: {{totalLatest}}</div>
     <div class="flex flex-col lg:flex-row gap-6">
       <!-- Filter section -->
       <section
@@ -134,14 +138,6 @@ onMounted(() => {
                 <span>{{ $t('home.min') }}: ${{ filterOption.priceRange[0] }}</span>
                 <span>{{ $t('home.max') }}: ${{ filterOption.priceRange[1] }}</span>
               </div>
-            </div>
-
-            <div class="mb-6">
-              <p class="font-bold mb-4">{{ $t('home.sort_by_price') }}</p>
-              <el-radio-group v-model="sortOrder" @change="sortProducts">
-                <el-radio value="ascending">{{ $t('home.ascending') }}</el-radio>
-                <el-radio value="descending">{{ $t('home.descending') }}</el-radio>
-              </el-radio-group>
             </div>
           </div>
         </div>

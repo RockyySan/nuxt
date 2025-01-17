@@ -1,10 +1,10 @@
 <template>
-    <div class="container flex flex-col items-center justify-center gap-y-8">
-       <Banner />
-       <CategoryContent />
-      <LatestProduct />
-       <Discounted />
-    </div>
+  <div class="container flex flex-col items-center justify-center gap-y-8">
+    <Banner />
+    <CategoryContent />
+    <LatestProduct />
+    <Discounted />
+  </div>
 </template>
 
 <script setup>

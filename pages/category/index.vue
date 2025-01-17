@@ -1,6 +1,8 @@
 <template>
   <div class="max-w-4xl mx-auto p-6">
-    <h1 class="text-3xl font-bold text-gray-800 mb-6">Categories</h1>
+    <button @click="navigateTo('')" class="p-2 bg-primary rounded w-[100px]">
+      <i class="fa-solid fa-arrow-left pr-[10px]"></i>Back</button>
+    <h1 class="text-3xl font-bold text-gray-800 mb-6 text-center">{{ $t('home.categories') }}</h1>
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
       <div
         v-for="category in categories"
@@ -32,9 +34,9 @@
         @click="loadMore"
         class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 transition"
       >
-        View More
+        {{ $t('home.see_more') }}
       </button>
-      <p v-else class="text-gray-600">All categories loaded</p>
+      <p v-else class="text-gray-600">{{ $t('home.categories') }}</p>
     </div>
   </div>
 </template>

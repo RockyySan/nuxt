@@ -39,15 +39,6 @@
             />
           </el-form-item>
 
-          <!-- Description -->
-          <el-form-item label="Description" prop="description">
-            <el-input
-              type="textarea"
-              v-model="businessForm.description"
-              placeholder="Write a short description of your business"
-            />
-          </el-form-item>
-
           <!-- Purpose -->
           <el-form-item label="Purpose" prop="purpose">
             <el-input
@@ -65,6 +56,15 @@
             />
           </el-form-item>
 
+          <!-- Description -->
+          <el-form-item label="Description" prop="description">
+            <el-input
+              type="textarea"
+              v-model="businessForm.description"
+              placeholder="Write a short description of your business"
+            />
+          </el-form-item>
+
           <!-- Submit Button -->
           <el-form-item>
             <el-button   class="submit-button" @click="handleSubmit">Submit</el-button>
@@ -79,12 +79,11 @@
 import { ref } from 'vue'
 import { useSeoMeta } from 'nuxt/app'
 import { ElMessage } from 'element-plus'
-
+import { useRequestVendorStore } from '~/store/request.js'
 // Page Metadata
 useSeoMeta({ title: 'Rumdul | Join Business' })
 definePageMeta({ layout: 'auth' })
 
-import { useRequestVendorStore } from '~/store/request.js'
 const requestVendorStore = useRequestVendorStore()
 
 // Form Data and Rules

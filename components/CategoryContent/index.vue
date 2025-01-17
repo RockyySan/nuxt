@@ -2,12 +2,12 @@
   <div class="promo-content container mx-auto py-8">
     <!-- Header Section -->
     <div class="flex justify-between items-center mb-6">
-      <h2 class="text-2xl font-bold">Category</h2>
+      <h2 class="text-2xl font-bold">{{ $t('home.category') }}</h2>
       <el-button
         @click="navigateTo('category')"
         class="text-lg cursor-pointer"
       >
-        See More
+        {{ $t('home.see_more') }}
       </el-button>
     </div>
 

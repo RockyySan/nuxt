@@ -31,18 +31,18 @@ export const useProductStore = defineStore('product', () => {
     }
   }
 
-  //latest product
+  // Store Layer - Pinia Store
   const getLatestProduct = async (params) => {
     try {
-      const { data } = await productService.getLatestProduct(params)
-      const products = data || {}
-      product.value = products
-      return products
+      const { data } = await productService.getLatestProduct(params);
+      product.value = data || {};
+      return product.value;
     } catch (error) {
-      ElMessage.error(error.message || 'Get latest product failed')
-      throw new Error(`Get latest product failed: ${error.message || 'Unknown error'}`)
+      ElMessage.error('Failed to fetch latest products');
+      throw new Error(`Failed to fetch latest products: ${error.message || 'Unknown error'}`);
     }
-  }
+  };
+
 
   //getDiscountedProduct
   const getDiscountedProduct = async (params) => {
@@ -57,11 +57,25 @@ export const useProductStore = defineStore('product', () => {
     }
   }
 
+  //getPromotionProduct
+  const getPromotionProduct = async (params) => {
+    try {
+      const { data } = await productService.getPromotionProduct(params)
+      const products = data || {}
+      product.value = products
+      return products
+    } catch (error) {
+      ElMessage.error(error.message || 'Get promotion product failed')
+      throw new Error(`Get promotion product failed: ${error.message || 'Unknown error'}`)
+    }
+  }
+
   return {
     product: computed(() => product.value),
     getProduct,
     showProduct,
     getLatestProduct,
-    getDiscountedProduct
+    getDiscountedProduct,
+    getPromotionProduct
   }
 })

@@ -77,10 +77,65 @@ export const useAuthStore = defineStore('auth', () => {
   const logout = () => {
     user.value = null
     token.value = null
-
+    authService.logout()
     cookies.remove('access_token')
     cookies.remove('user')
     cookies.remove('tokenType')
+    //logout
+  }
+
+  //getProfile
+  const getProfile = async () => {
+    try {
+      const { data } = await authService.getProfile()
+      if (!data) {
+        throw new Error('No data returned')
+      }
+      return data
+    } catch (error) {
+      ElMessage.error(error.message || 'Profile failed')
+      throw new Error(`Profile failed: ${error.message || 'Unknown error'}`)
+    }
+  }
+
+  //updateProfile
+  const editProfile = async (credentials) => {
+    try {
+      console.log(credentials)
+      const { data } = await authService.updateProfile(credentials)
+      if (!data) {
+        throw new Error('No data returned')
+      }
+      return data
+    } catch (error) {
+      throw error
+    }
+  }
+
+  //resetPassword
+  const resetPassword = async (credentials) => {
+    try {
+      const { status } = await authService.resetPassword(credentials)
+      if (!status) {
+        throw new Error('No data returned')
+      }
+      return status
+    } catch (error) {
+      throw error
+    }
+  }
+
+  //updatePassword
+  const updatePassword = async (credentials) => {
+    try {
+      const { status } = await authService.updatePassword(credentials)
+      if (!status) {
+        throw new Error('No data returned')
+      }
+      return status
+    } catch (error) {
+      throw error
+    }
   }
 
   return {
@@ -90,5 +145,9 @@ export const useAuthStore = defineStore('auth', () => {
     login,
     logout,
     getMe,
+    getProfile,
+    editProfile,
+    resetPassword,
+    updatePassword
   }
 })

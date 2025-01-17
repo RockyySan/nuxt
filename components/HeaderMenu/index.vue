@@ -2,7 +2,7 @@
   <div>
     <!-- Header -->
     <el-affix :offset="0">
-      <header class="bg-white text-black">
+      <header class="bg-primary text-black">
         <div class="container mx-auto flex items-center justify-between p-4">
           <!-- Logo -->
           <div class="logo flex items-center">
@@ -23,8 +23,10 @@
                 <!-- Input field for the search bar -->
                 <input
                   type="text"
+                  v-model="searchQuery"
                   placeholder="Search for products..."
                   class="search-bar w-full px-4 py-2 rounded-full text-gray-700 outline-none focus:outline-none focus:ring-2 pl-10"
+                  @keyup.enter="search"
                 />
                 <!-- Element Plus search icon inside the input field -->
                 <el-icon
@@ -36,32 +38,26 @@
               <!-- Wishlist -->
               <li v-if="isLogin">
                 <NuxtLink to="/wishlist">
-                  <el-badge is-dot class="item-dot">
-                    <Icon name="uil:heart" class="header-icon" />
-                  </el-badge>
-                  <span class="ml-2">Wishlist</span>
+                  <span class="ml-2">{{ $t('home.wishlist') }}</span>
                 </NuxtLink>
               </li>
               <!-- Cart -->
               <li v-if="isLogin">
                 <NuxtLink to="/cart">
-                  <el-badge :value="0" class="item" color="red">
-                    <Icon name="uil:cart" class="header-icon" />
-                  </el-badge>
-                  <span class="ml-2">Cart</span>
+                  <span class="ml-2">{{ $t('home.cart') }}</span>
                 </NuxtLink>
               </li>
               <!-- Order -->
               <li v-if="isLogin">
                 <NuxtLink to="/order">
                   <Icon name="uil:store" class="header-icon" />
-                  <span class="ml-2">Order</span>
+                  <span class="ml-2">{{ $t('home.order') }}</span>
                 </NuxtLink>
               </li>
               <!-- Join Business -->
               <li>
                 <NuxtLink to="/join-business">
-                  <p class="business">Join Business</p>
+                  <p class="business">{{ $t('home.join_business') }}</p>
                 </NuxtLink>
               </li>
               <li>
@@ -70,13 +66,23 @@
               <!-- Sign In -->
               <li v-if="isLogin">
                 <NuxtLink to="/profile" class="profile">
-                  <Icon name="uil:user" class="header-icon" />
+                  <!-- <Icon name="uil:user" class="header-icon" /> -->
+                  <div v-if="user">
+                    <img
+                      :src="user.image"
+                      alt="Profile Image"
+                      class="w-10 h-10 rounded-full object-cover"
+                    />
+                  </div>
                 </NuxtLink>
               </li>
               <li v-else>
                 <NuxtLink to="/sign-in">
-                  <span class="ml-2">Sign In</span>
+                  <span class="ml-2">{{ $t('home.sign_in') }}</span>
                 </NuxtLink>
+              </li>
+              <li>
+                <Locale/>
               </li>
             </ul>
           </nav>
@@ -87,9 +93,39 @@
 </template>
 
 <script setup>
+import { ref } from "vue";
+import { useRouter } from "nuxt/app";
+import { useAuthStore } from '~/store/auth.js';
+import { useCookies } from 'vue3-cookies'
 defineProps({
   isLogin: Boolean,
-})
+});
+const { cookies } = useCookies()
+const searchQuery = ref("");
+const router = useRouter();
+const authStore = useAuthStore();
+const user = ref(null);
+
+const search = () => {
+  if (searchQuery.value.trim()) {
+    router.push({
+      path: "/products",
+      query: { title: searchQuery.value },
+    });
+  }
+};
+
+onMounted(async () => {
+  const token = cookies.get('access_token')
+  if (!token) {
+    return
+  }
+  try {
+    user.value = await authStore.getProfile(); // Fetch user data or use cached data
+  } catch (error) {
+    console.error('Failed to fetch user data:', error);
+  }
+});
 </script>
 
 <style scoped>
@@ -146,9 +182,9 @@ li a:hover {
   color: #000;
 }
 
-.profile{
-  width: 35px;
-  height: 35px;
+.profile {
+  width: 40px;
+  height: 40px;
   display: flex;
   justify-content: center;
   align-items: center;

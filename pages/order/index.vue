@@ -14,9 +14,7 @@ const orders = ref([])
 const fetchOrder = async () => {
   try {
     const orderList = await getOrder()
-    console.log(orderList)
     orders.value = orderList
-    console.log('Order:', orderList)
   } catch (error) {
     ElMessage.error('Failed to fetch order')
   }
@@ -28,12 +26,13 @@ onMounted(() => {
 </script>
 
 <template>
-  <h1>Your History</h1>
-  <el-table :data="orders" class="w-[1000px] table">
+  <button @click="navigateTo('/')" class="bg-primary p-2 rounded">{{ $t('home.back_home') }}</button>
+  <h1 class="text-lg mb-2">Your History</h1>
+  <el-table :data="orders" class="table w-[900px]">
     <el-table-column prop="code" label="Order code" width="180" />
     <el-table-column prop="created_at" label="Date" width="280" />
     <el-table-column prop="amount" label="Total price" width="180" />
-    <el-table-column prop="address" label="Address" width="400" />
+    <el-table-column prop="address" label="Address" width="280" />
   </el-table>
 </template>
 
@@ -41,6 +40,5 @@ onMounted(() => {
 .table {
   border: 2px solid #d3d3d3;
   border-radius: 8px;
-  overflow: hidden;
 }
 </style>

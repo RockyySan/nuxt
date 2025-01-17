@@ -54,11 +54,24 @@ export const useCartStore = defineStore('cart', () => {
       throw new Error('Failed to delete item in store: ' + error.message)
     }
   }
+
+  //Checkout
+  const checkout = async (params) => {
+    try {
+      const addedCart = await cartService.Checkout(params);
+      console.log('Cart added successfully:', addedCart);  // Log full response
+      state.Cart = addedCart.Cart;  // Update cart state
+      return addedCart.data;
+    }catch(error) {
+      throw new Error('Failed to add product to cart');
+    }
+  }
   return {
     cart: computed(() => cart.value),  // Expose cart as computed property
     getCart,
     deleteCart,
     buyCart,
-    addCart
+    addCart,
+    checkout
   }
 })

@@ -20,11 +20,11 @@ onMounted(() => {
 </script>
 
 <template>
-  <div class="latest-content container mx-auto py-8">
+  <div v-if="products.length" class="latest-content container mx-auto py-8">
     <div class="flex justify-between items-center mb-6">
-      <h2 class="text-2xl font-bold">Discounted Products</h2>
+      <h2 class="text-2xl font-bold">{{ $t('home.discount_product') }}</h2>
       <el-button
-        @click="navigateTo('/products')"
+        @click="navigateTo('/promotion?filter=discount')"
         class="text-lg cursor-pointer"
       >
         See More

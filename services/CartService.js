@@ -31,6 +31,9 @@ class CartService extends BaseService {
   async buyCart(data) {
     return await this._post(`${this._prefix}/buy`, data)
   }
+  async Checkout(data) {
+    return await this._post(`${this._prefix}/checkout`, data)
+  }
 
   async deleteCart(id) {
     return await this._delete(`${this._prefix}/${id}`)

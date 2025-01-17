@@ -1,36 +1,48 @@
 <script setup>
 import { ref, onMounted } from 'vue';
-import { useProductStore } from '~/store/product.js';
+import { useRouter } from 'vue-router';
+import { useProductStore } from '~/store/product';
 
 const products = ref([]);
 const productStore = useProductStore();
 const { getLatestProduct } = productStore;
 
-const fetchProduct = async (params) => {
+const router = useRouter();
+
+const fetchLatestProducts = async () => {
   try {
-    products.value = await getLatestProduct(params); // Data fetched from API response
+    const params = {
+      per_page: 4,
+      current_page: 1,
+      latest: true
+    }
+    products.value = await getLatestProduct(params);
   } catch (error) {
-    ElMessage.error('Failed to fetch product');
+    ElMessage.error('Failed to fetch latest products');
   }
 };
 
+const navigateToProducts = () => {
+  router.push({ path: '/latest-product', query: { latest: true } });
+};
+
 onMounted(() => {
-  fetchProduct();
+  fetchLatestProducts();
 });
 </script>
 
 <template>
   <div class="latest-content container mx-auto py-8">
     <div class="flex justify-between items-center mb-6">
-      <h2 class="text-3xl font-bold">Latest Product</h2>
+      <h2 class="text-3xl font-bold">{{ $t('home.latest_product') }}</h2>
       <el-button
-        @click="navigateTo('/Category')"
+        @click="navigateToProducts"
         class="text-lg cursor-pointer"
       >
-        See More
+        {{ $t('home.see_more') }}
       </el-button>
     </div>
-    <ProductCard :products="products" />
+    <ProductCard :products="products.data" />
   </div>
 </template>
 

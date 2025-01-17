@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="layout">
     <!-- Header -->
     <header>
       <HeaderMenu :isLogin="isLogin" />
@@ -38,6 +38,16 @@ onMounted(() => {
 </script>
 
 <style scoped>
+/* Full-height layout */
+.layout {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh; /* Full viewport height */
+}
+
+main {
+  flex-grow: 1; /* Allow main content to grow and take available space */
+}
 /* Navigation Links */
 ul {
   list-style: none;

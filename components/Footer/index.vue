@@ -13,36 +13,35 @@
               />
             </NuxtLink>
           </div>
-          <p>
-            We offer the best products with excellent service and fast delivery.
+          <p class="mt-5">
+            {{ $t('home.footer_description') }}
           </p>
         </div>
 
         <!-- Quick Links -->
         <div class="footer-links">
-          <h3>Quick Links</h3>
+          <h3>{{ $t('home.quick_links') }}</h3>
           <ul>
-            <li><a href="/about">About Us</a></li>
-            <li><a href="/shop">Shop</a></li>
-            <li><a href="/faq">FAQ</a></li>
-            <li><a href="/contact">Contact Us</a></li>
+            <li><a @click="navigateTo('')">{{ $t('home.about_us') }}</a></li>
+            <li><a @click="navigateTo('')">{{ $t('home.store') }}</a></li>
+            <li><a @click="navigateTo('')">{{ $t('home.faq') }}</a></li>
+            <li><a @click="navigateTo('')">{{ $t('home.contact_us') }}</a></li>
           </ul>
         </div>
 
         <!-- Contact Information -->
         <div class="footer-contact">
-          <h3>Contact Us</h3>
-          <p>Email: support@yourstore.com</p>
-          <p>Phone: +123 456 7890</p>
+          <h3>{{ $t('home.about_us') }}</h3>
+          <p>{{ $t('home.email') }} : support@yourstore.com</p>
+          <p>{{ $t('home.phone') }} : +123 456 7890</p>
           <div class="footer-social">
-            <a href="#" aria-label="Facebook">FB</a>
-            <a href="#" aria-label="Instagram">IG</a>
-            <a href="#" aria-label="Twitter">TW</a>
+            <a aria-label="Facebook">FB</a>
+            <a aria-label="Instagram">IG</a>
           </div>
         </div>
       </div>
       <div class="footer-bottom">
-        <p>&copy; 2024 Rumdul All rights reserved.</p>
+        <p>&copy; {{ $t('home.rights_reserved') }}</p>
       </div>
     </footer>
   </div>

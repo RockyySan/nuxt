@@ -31,11 +31,8 @@
               show-password
             ></el-input>
           </el-form-item>
-          <div class="flex justify-between items-center mb-4">
-            <el-checkbox v-model="loginForm.rememberMe"
-              >Remember Me</el-checkbox
-            >
-            <a href="#" class="text-blue-500 text-sm">Forgot Password?</a>
+          <div class="flex justify-end mb-4">
+            <el-button @click="navigateTo('/reset-password')" class="text-blue-500 text-sm">Forgot Password?</el-button>
           </div>
           <div class="container flex justify-center items-center">
             <el-button class="login-button" @click="handleLogin">
